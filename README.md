@@ -95,6 +95,9 @@ So, it took me some time to make a responsive UI based on DOM and MVC.
 At first, I wanted to use `bootstrap`, but, imho, it's overkill for such small things.
 Also, it would be easy not to use `jquery`, but I found it really convenient.
 
+<img src="name-request.png" alt="name request screenshot" width="500"/>
+<img src="actuall-chat.png" alt="chat screenshot" width="500"/>
+
 #### Client
 Client logic is based on JS, STOMP (higher level of abstraction for web sockets), and SockJS for easy work with WebSocket-like objects.
 
