@@ -11,7 +11,7 @@ It was done in 12 hours.
 It is developed in `Java 17` with `Spring Boot`, `webjars-locator-core`, `sockjs-client`, `stomp-websocket`, `jquery`, and basic `HTML/CSS/JS`.
 
 ### Begining
-At first, I made a simple pplication in vanilla `Java 8` using `java.net.Socket` and `java.io.DataInput/OutputStream`.
+At first, I made a simple application in vanilla `Java 8` using `java.net.Socket` and `java.io.DataInput/OutputStream`.
 
 There were to applications: `Server` and `Client`.
 
@@ -81,7 +81,7 @@ That's it for a small test aplication. The whole code, I can share on your deman
 To build a real web application with a client side in the browser,
 I started by reading an official Spring framework guide "Using WebSocket to build an interactive web application".
 
-Two big tasks there were:
+Three big tasks were there:
 
 1. Develop UI
 1. Client
