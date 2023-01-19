@@ -57,6 +57,10 @@ function closeChat() {
     $("#chatbox").hide();
 }
 
+const beforeUnloadListener = () => {
+    disconnect();
+};
+
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
@@ -65,6 +69,7 @@ $(function () {
     $( "#connect" ).click(function() {
         connect();
         openChat();
+        addEventListener("beforeunload", beforeUnloadListener, {capture: true});
     });
 
     $( "#disconnect" ).click(function() {
