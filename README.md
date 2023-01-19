@@ -1,7 +1,7 @@
 ## Datagrok test task for Junior Software Engineer position
 
 ### Intro
-So, in this doc, I'll write my experience of developing a web-based chat application.
+In this doc, I'll write my experience of developing a web-based chat application.
 User is able to choose his name, change it anytime, and post any text message to the chat.
 Web sockets are used to connect to the server and get and send messages to other users.
 
