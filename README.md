@@ -109,6 +109,11 @@ I have controller wich takes users' messages and it resends messages for each ac
 For hosting, I rent a basic server with Ubuntu from DigitalOcean.
 I use it for other projects, so I just ran this web app there.
 
+### How to run
+Maven is used in this project.
+You can run the application by using `./mvnw spring-boot:run`.
+Alternatively, you can build the JAR file with `./mvnw clean package` and then run the JAR file.
+
 ### Ending
 Thanks for your time. I'd be glad to communicate more.
 
