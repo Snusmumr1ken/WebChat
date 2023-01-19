@@ -24,8 +24,32 @@ function connect() {
     });
 }
 
+function connectNew() {
+    const socket = new SockJS('/gs-guide-websocket');
+    const userName = $("#name-input").val();
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + userName + ', ' + frame);
+        stompClient.subscribe('/topic/chat', function(message) {
+            showMessage(JSON.parse(message.body));
+        });
+        sendMessage('connected.');
+    });
+}
+
+function showMessage(message) {
+    $("#chat-text").append('\n' + message.name + ': ' + message.message);
+}
+
+function sendMessage(message) {
+    const name = $("#name-input").val();
+    stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'message': message}));
+}
+
 function disconnect() {
     if (stompClient !== null) {
+        sendMessage('left chat.')
         stompClient.disconnect();
     }
     setConnected(false);
@@ -62,13 +86,17 @@ $(function () {
     $( "#send" ).click(function() { sendName(); });
 
     $( "#connect1" ).click(function() {
+        connectNew();
         openChat();
-        connect();
     });
 
     $( "#disconnect1" ).click(function() {
         closeChat();
         disconnect();
+    });
+
+    $( "#send-message" ).click(function() {
+        sendMessage($("#message-input").val());
     });
 });
 
