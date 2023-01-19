@@ -74,6 +74,7 @@ $(function () {
 
     $( "#send-message" ).click(function() {
         sendMessage($("#message-input").val());
+        $("#message-input").val('');
     });
 });
 
