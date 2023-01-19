@@ -46,8 +46,12 @@ body {
 
 #chat {
     min-height: 500px;
+    min-width: 500px;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
+    padding: 5px;
+    overflow-y: scroll;
+    resize: none;
 }
 
 #message-form {

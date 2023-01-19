@@ -39,7 +39,7 @@ function connectNew() {
 }
 
 function showMessage(message) {
-    $("#chat-text").append('\n' + message.name + ': ' + message.message);
+    $("#chat").append('\n' + message.name + ': ' + message.message);
 }
 
 function sendMessage(message) {
