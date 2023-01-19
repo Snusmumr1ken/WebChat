@@ -55,16 +55,23 @@
 
 <form id="my-form">
     <p>What's your name, buddy?</p>
-    <input type="text" placeholder="Your name here...">
-    <button id="send1" type="submit">Connect</button>
+    <input id="name-input" type="text" placeholder="Your name here...">
+    <button id="connect1" type="submit">Connect</button>
 </form>
 
-<div id="chat-placeholder">
-    <div id="chat">
-
+<div id="chatbox">
+    <div id="welcome-or-disconnect">
+        <p id="welcome-text">Welcome, </p>
+        <button id="disconnect1" type="submit">Disconnect</button>
     </div>
-    <input type="text" placeholder="Your message here...">
-    <button id="send-message" type="submit">Send</button>
+
+    <div id="chat">
+    </div>
+
+    <form id="message-form">
+        <input id="message-input" type="text" placeholder="Your message here...">
+        <button id="send-message" type="submit">Send</button>
+    </form>
 </div>
 
 </body>

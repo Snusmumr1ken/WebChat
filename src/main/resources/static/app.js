@@ -1,4 +1,4 @@
-let stompClient = null;
+var stompClient = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -36,6 +36,19 @@ function sendName() {
     stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
 }
 
+function openChat() {
+    let name = document.getElementById("name-input").value;
+    $("#welcome-text").append(name + "!");
+    $("#chatbox").show();
+    $("#my-form").hide();
+}
+
+function closeChat() {
+    $("#my-form").show();
+    $("#welcome-text").text("Welcome, ");
+    $("#chatbox").hide();
+}
+
 function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
@@ -47,5 +60,15 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
+
+    $( "#connect1" ).click(function() {
+        openChat();
+        connect();
+    });
+
+    $( "#disconnect1" ).click(function() {
+        closeChat();
+        disconnect();
+    });
 });
 

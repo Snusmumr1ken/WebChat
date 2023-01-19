@@ -9,8 +9,6 @@ body {
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -27,14 +25,47 @@ body {
     border-radius: 10px;
 }
 
-#chat-placeholder {
+#chatbox {
+    max-width: 600px;
+    padding: 2em;
+    margin: 20px auto 20px;
+    background-color: #fff;
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    display: none;
+}
 
+#welcome-or-disconnect {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat {
+    min-height: 500px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+
+#message-form {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#message-input {
+    min-width: 450px;
 }
 
 #footer {
     text-align: center;
 }
 
-#send1 {
+#connect1 {
     margin-top: 10px;
 }
