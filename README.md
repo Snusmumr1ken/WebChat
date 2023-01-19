@@ -84,10 +84,32 @@ I started by reading an official Spring framework guide "Using WebSocket to buil
 Two big tasks there were:
 
 1. Develop UI
-2. Implement WebSockets logic using high level framework tools.
+1. Client
+2. Backend
 
-Honestly, I am absolutely bad at building UI.
+#### UI
+Honestly, I am absolutely bad at building UIs.
 Even this pretty small application was not adapted for mobile devices.
 So, it took me some time to make a responsive UI based on DOM and MVC.
 
-At first, I wanted to use bootstrap, but, imho, it's overkill for such small things.
+At first, I wanted to use `bootstrap`, but, imho, it's overkill for such small things.
+Also, it would be easy not to use `jquery`, but I found it really convenient.
+
+#### Client
+Client logic is based on JS, STOMP (higher level of abstraction for web sockets), and SockJS for easy work with WebSocket-like objects.
+
+When user writes his name and enters chat, stompClient is being initialized and listener for messages from other users is established.
+
+#### Backend
+Backend is pretty simple here.
+Everything is handled by Spring.
+I have controller wich takes users' messages and it resends messages for each active client.
+
+### Hosting
+For hosting, I rent a basic server with Ubuntu from DigitalOcean.
+I use it for other projects, so I just ran this web app there.
+
+### Ending
+Thanks for your time. I'd be glad to communicate more.
+
+![That's all](https://i.kym-cdn.com/entries/icons/original/000/028/021/work.jpg)
