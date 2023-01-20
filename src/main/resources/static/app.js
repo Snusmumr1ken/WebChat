@@ -27,7 +27,15 @@ function connect() {
 }
 
 function showMessage(message) {
-    $("#chat").append(message.name + ': ' + message.message + "<br>");
+    let minutes = new Date(Date.now()).getMinutes();
+    if (minutes < 10 || minutes === 0) minutes = "0" + minutes;
+
+    let hours = new Date(Date.now()).getHours();
+    if (hours < 10 || hours === 0) hours = "0" +hours;
+
+    let time = "<em style='color: darkturquoise; font-style: normal;'>" + hours + ":" + minutes + "</em> ";
+
+    $("#chat").append(time + " " + message.name + ": " + message.message + "<br>");
 }
 
 function sendMessage(message) {
