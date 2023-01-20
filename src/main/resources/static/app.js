@@ -40,7 +40,7 @@ function showMessage(message) {
 
 function sendMessage(message) {
     const name = $("#name-input").val();
-    stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'message': message}));
+    stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'message': message, 'timestamp': Date.now()}));
 }
 
 function disconnect() {
@@ -90,4 +90,3 @@ $(function () {
         $("#message-input").val('');
     });
 });
-
