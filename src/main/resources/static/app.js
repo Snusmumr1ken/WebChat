@@ -20,17 +20,17 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + userName + ', ' + frame);
         stompClient.subscribe('/topic/chat', function(message) {
-            showMessage(JSON.parse(message.body));
+            showMessage(JSON.parse(message.body), Date.now());
         });
         sendMessage('connected.');
     });
 }
 
-function showMessage(message) {
-    let minutes = new Date(Date.now()).getMinutes();
+function showMessage(message, timestamp) {
+    let minutes = new Date(timestamp).getMinutes();
     if (minutes < 10 || minutes === 0) minutes = "0" + minutes;
 
-    let hours = new Date(Date.now()).getHours();
+    let hours = new Date(timestamp).getHours();
     if (hours < 10 || hours === 0) hours = "0" +hours;
 
     let time = "<em style='color: darkturquoise; font-style: normal;'>" + hours + ":" + minutes + "</em> ";
@@ -65,6 +65,25 @@ function closeChat() {
     $("#chatbox").hide();
 }
 
+function loadChatHistory() {
+    fetch("/messages")
+        .then((response) => {
+            if (!response.ok) {
+                throw Error('HTTP error: ' + response.status);
+            }
+            return response.json();
+        })
+        .then((messages) => {
+            messages.forEach((message) => {
+                showMessage(message, message.timestamp);
+            });
+        });
+}
+
+function clearChat() {
+    $("#chat").text("");
+}
+
 const beforeUnloadListener = () => {
     disconnect();
 };
@@ -76,11 +95,13 @@ $(function () {
 
     $( "#connect" ).click(function() {
         connect();
+        loadChatHistory();
         openChat();
         addEventListener("beforeunload", beforeUnloadListener, {capture: true});
     });
 
     $( "#disconnect" ).click(function() {
+        clearChat();
         closeChat();
         disconnect();
     });

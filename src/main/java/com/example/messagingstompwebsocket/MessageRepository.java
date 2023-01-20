@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MessagesRepository {
+public class MessageRepository {
     Connection connection;
     Statement statement;
 
-    MessagesRepository() throws SQLException{
+    MessageRepository() throws SQLException{
         // make a connection to db
         connection = DriverManager.getConnection("jdbc:sqlite:datagrok");
         statement = connection.createStatement();
