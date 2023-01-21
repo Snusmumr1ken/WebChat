@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MessageController {
@@ -18,8 +19,9 @@ public class MessageController {
 	@MessageMapping("/message")
 	@SendTo("/topic/chat")
 	public Message message(Message message) throws Exception {
-		repository.saveMessage(message.name(), message.message(), message.timestamp());
-		System.out.println(repository.getAllMessages());
+		if (!Objects.equals(message.message(), "left chat.") && !Objects.equals(message.message(), "connected.")) {
+			repository.saveMessage(message.name(), message.message(), message.timestamp());
+		}
 		return new Message(message.name(), message.message(), message.timestamp());
 	}
 
