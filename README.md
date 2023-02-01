@@ -6,7 +6,7 @@ User is able to choose their name, change it anytime, and post any text message 
 Web sockets are used to connect to the server and get and send messages to other users.
 
 ### Stack
-It is developed in `Java 17` with `Spring Boot` for a server, and `HTML/CSS/JS` and jQuery for a client.
+It is developed in `Java 17` with `Spring Boot` for a server, and `HTML/CSS/JS` and `jQuery` for a client.
 
 ### Begining
 At first, I made a simple application in vanilla `Java 8` using `java.net.Socket` and `java.io.DataInput/OutputStream`.
