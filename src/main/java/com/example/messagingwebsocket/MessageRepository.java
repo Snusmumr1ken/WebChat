@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package com.example.messagingwebsocket;
 
 import java.sql.*;
 import java.util.ArrayList;

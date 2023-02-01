@@ -1,4 +1,4 @@
-var stompClient = null;
+var socket = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -13,17 +13,17 @@ function setConnected(connected) {
 }
 
 function connect() {
-    const socket = new SockJS('/gs-guide-websocket');
-    const userName = $("#name-input").val();
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + userName + ', ' + frame);
-        stompClient.subscribe('/topic/chat', function(message) {
-            showMessage(JSON.parse(message.body), Date.now());
-        });
+    socket = new WebSocket('ws://localhost:8080/message');
+
+    socket.onopen = function (event) {
+        console.log("Connected");
         sendMessage('connected.');
-    });
+    }
+
+    socket.onmessage = function (messageEvent) {
+        console.log("new message! : " + messageEvent.data)
+        showMessage(JSON.parse(messageEvent.data), Date.now());
+    }
 }
 
 function showMessage(message, timestamp) {
@@ -40,13 +40,14 @@ function showMessage(message, timestamp) {
 
 function sendMessage(message) {
     const name = $("#name-input").val();
-    stompClient.send("/app/message", {}, JSON.stringify({'name': name, 'message': message, 'timestamp': Date.now()}));
+    socket.send(JSON.stringify({'name': name, 'message': message, 'timestamp': Date.now()}));
+    console.log("New message sent: " + message);
 }
 
 function disconnect() {
-    if (stompClient !== null) {
+    if (socket !== null) {
         sendMessage('left chat.')
-        stompClient.disconnect();
+        socket.close();
     }
     setConnected(false);
     console.log("Disconnected");
