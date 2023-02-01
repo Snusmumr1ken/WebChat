@@ -13,7 +13,7 @@ function setConnected(connected) {
 }
 
 function connect() {
-    socket = new WebSocket('ws://localhost:8080/message');
+    socket = new WebSocket('ws://165.22.83.148:8080/message');
 
     socket.onopen = function (event) {
         console.log("Connected");
