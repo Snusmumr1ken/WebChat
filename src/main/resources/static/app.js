@@ -1,4 +1,4 @@
-var socket = null;
+let socket = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -17,6 +17,7 @@ function connect() {
 
     socket.onopen = function (event) {
         console.log("Connected");
+        setConnected(true);
         sendMessage('connected.');
     }
 

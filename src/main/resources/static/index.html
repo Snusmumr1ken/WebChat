@@ -4,7 +4,7 @@
 <head>
     <title>WebSocket chat | Andrii Nyvchyk</title>
     <link href="/main.css" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery/3.6.2/jquery.min.js"></script>
     <script src="/app.js"></script>
 </head>
 
@@ -18,13 +18,13 @@
 <form id="my-form">
     <p>What's your name, buddy?</p>
     <input id="name-input" type="text" placeholder="Your name here...">
-    <button id="connect" type="submit">Connect</button>
+    <button id="connect" type="button">Connect</button>
 </form>
 
 <div id="chatbox">
     <div id="welcome-or-disconnect">
         <p id="welcome-text">Welcome, </p>
-        <button id="disconnect" type="submit">Disconnect</button>
+        <button id="disconnect" type="button">Disconnect</button>
     </div>
 
     <p id="chat">
