@@ -1,23 +1,19 @@
-## Datagrok test task for Junior Software Engineer position
+## Simple WebSocket chat application
 
 ### Intro
-In this doc, I'll write my experience of developing a web-based chat application.
-User is able to choose his name, change it anytime, and post any text message to the chat.
+In this doc, you can find my experience of developing a web-based chat application.
+User is able to choose their name, change it anytime, and post any text message to the chat.
 Web sockets are used to connect to the server and get and send messages to other users.
 
-It was done in 12 hours.
-
 ### Stack
-It is developed in `Java 17` with `Spring Boot`, `webjars-locator-core`, `sockjs-client`, `stomp-websocket`, `jquery`, and basic `HTML/CSS/JS`.
+It is developed in `Java 17` with `Spring Boot` for a server, and `HTML/CSS/JS` and jQuery for a client.
 
 ### Begining
 At first, I made a simple application in vanilla `Java 8` using `java.net.Socket` and `java.io.DataInput/OutputStream`.
 
 There were to applications: `Server` and `Client`.
 
-Server is listening to the specific port. When user connects, a new thread created for listening for his messages and redirecting them to all.
-
-From the other hand, a client connects to the port, there is a loop which waits for his messages and a thread for getting messages from other people.
+`Server` is listening to the specific port. When user connects, a new thread created for listening for their messages and redirecting them to all other clients.
 
 `Server.listen(int port)`:
 
@@ -53,6 +49,8 @@ From the other hand, a client connects to the port, there is a loop which waits 
         }
     }
     
+`Client` connects to the port, there is a loop which waits for their input messages and a thread for getting messages from other people.
+
 `Client application logic`:
 
   public Client () {
@@ -74,8 +72,7 @@ From the other hand, a client connects to the port, there is a loop which waits 
                 }
             }
     }
-    
-That's it for a small test aplication. The whole code, I can share on your demand.
+
 
 ### Real work
 To build a real web application with a client side in the browser,
@@ -90,23 +87,26 @@ Three big tasks were there:
 #### UI
 Honestly, I am absolutely bad at building UIs.
 Even this pretty small application was not adapted for mobile devices.
-So, it took me some time to make a responsive UI based on DOM and MVC.
+So, it took me some time to make a responsive UI with DOM.
 
-At first, I wanted to use `bootstrap`, but, imho, it's overkill for such small things.
-Also, it would be easy not to use `jquery`, but I found it really convenient.
+Official example uses `bootstrap`, `stomp`, and `jsocks`, but, imho, it's an overkill for such small things.
+Also, it would be easy not to use `jquery`, but I find it's selectors really convenient.
 
 <img src="name-request.png" alt="name request screenshot" width="500"/>
 <img src="actuall-chat.png" alt="chat screenshot" width="500"/>
 
 #### Client
-Client logic is based on JS, STOMP (higher level of abstraction for web sockets), and SockJS for easy work with WebSocket-like objects.
+Client logic is written in JS and jQuery.
 
-When user writes his name and enters chat, stompClient is being initialized and listener for messages from other users is established.
+When user writes their name and enters chat, [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) is being initialized and listener for messages from other users is established.
 
 #### Backend
 Backend is pretty simple here.
 Everything is handled by Spring.
-I have controller wich takes users' messages and it resends messages for each active client.
+I have a SocketHandler wich takes users' messages and resends messages for each active `WebSocketSession`.
+
+I also used SQLite as a repository.
+It contains all sent messages.
 
 ### Hosting
 For hosting, I rent a basic server with Ubuntu from DigitalOcean.
@@ -116,8 +116,3 @@ I use it for other projects, so I just ran this web app there.
 Maven is used in this project.
 You can run the application by using `./mvnw spring-boot:run`.
 Alternatively, you can build the JAR file with `./mvnw clean package` and then run the JAR file.
-
-### Ending
-Thanks for your time. I'd be glad to communicate more.
-
-![That's all](https://i.kym-cdn.com/entries/icons/original/000/028/021/work.jpg)
